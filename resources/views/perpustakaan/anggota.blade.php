@@ -1,49 +1,101 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Form Anggota</title>
-</head>
-<body>
-    <h2>Form Anggota</h2>
-    <form action="{{ route('get_buku')}}">
-        <label for="id_anggota">ID Anggota:</label><br>
-        <input type="text" id="id_anggota" name="id_anggota"><br><br>
-        
-        <label for="kode_anggota">Kode Anggota:</label><br>
-        <input type="text" id="kode_anggota" name="kode_anggota"><br><br>
-        
-        <label for="nama_anggota">Nama Anggota:</label><br>
-        <input type="text" id="nama_anggota" name="nama_anggota"><br><br>
-        
-        <label for="jk_anggota">Jenis Kelamin:</label><br>
-        <input type="radio" id="jk_laki" name="jk_anggota" value="Laki-laki">
-        <label for="jk_laki">Laki-laki</label>
-        <input type="radio" id="jk_perempuan" name="jk_anggota" value="Perempuan">
-        <label for="jk_perempuan">Perempuan</label><br><br>
-        
-        <label for="jurusan_anggota">Jurusan:</label><br>
-        <select name="jurusan" id="jurusan">
-            <option value="">Pilih Jurusan</option>
-            <option value="RPL">RPL</option>
-            <option value="TKJ">TKJ</option>
-            <option value="TEI">TEI</option>
-            <option value="TM">TM</option>
-            <option value="TPGM">TPGM</option>
-            <option value="TITL">TITL</option>
-            <option value="DPIB">DPIB</option>
-            <option value="TKRO">TKRO</option>
-            <option value="TBSM">TBSM</option>
-            <option value="TPL">TPL</option>
-            <option value="TFLM">TFLM</option>    
-        </select><br><br>
-        
-        <label for="no_telp_anggota">Nomor Telepon:</label><br>
-        <input type="tel" id="no_telp_anggota" name="no_telp_anggota"><br><br>
-        
-        <label for="alamat_anggota">Alamat:</label><br>
-        <textarea id="alamat_anggota" name="alamat_anggota"></textarea><br><br>
-        
-        <input type="submit" value="Submit">
-    </form>
-</body>
-</html>
+@extends('layout.master')
+@section('title', 'anggota')
+@section('content')
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 class="m-0">Anggota</h1>
+                    </div><!-- /.col -->
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active">Anggota</li>
+                        </ol>
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </div>
+        <!-- /.content-header -->
+
+        <!-- Main content -->
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card card-primary">
+                            <div class="card-header">
+                                <h3 class="card-title">Form Anggota</h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <!-- form start -->
+                            <form>
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label for="id">ID Anggota</label>
+                                        <input type="text" class="form-control" id="id" placeholder="Masukkan ID">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="kode_anggota">Kode Anggota</label>
+                                        <input type="text" class="form-control" id="kode_anggota"
+                                            placeholder="Masukan kode">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="nama">Nama</label>
+                                        <input type="text" class="form-control" id="nama"
+                                            placeholder="Masukan nama">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="jk">Jenis Kelamin</label>
+                                        <div class="custom-control custom-radio">
+                                            <input class="custom-control-input" type="radio" id="p"
+                                                name="jk">
+                                            <label for="p" class="custom-control-label">Laki-laki</label>
+                                        </div>
+                                        <div class="custom-control custom-radio">
+                                            <input class="custom-control-input" type="radio" id="l"
+                                                name="jk">
+                                            <label for="l" class="custom-control-label">Perempuan</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Jurusan</label>
+                                        <select class="custom-select">
+                                            <option selected disabled>Pilih Jurusan</option>
+                                            <option>TKRO</option>
+                                            <option>TBSM</option>
+                                            <option>TP</option>
+                                            <option>TPGM</option>
+                                            <option>TPL</option>
+                                            <option>TFLM</option>
+                                            <option>TITL</option>
+                                            <option>DPIB</option>
+                                            <option>TKJ</option>
+                                            <option>RPL</option>
+                                            <option>TEI</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>No. Telepon</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                                            </div>
+                                            <input type="number" class="form-control"
+                                                data-inputmask='"mask": "(999) 999-9999"' data-mask placeholder="Masukan angka">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                            <label>Alamat</label>
+                                            <textarea class="form-control" rows="3" placeholder="Masukan alamat"></textarea>
+                                        </div>
+                                </div>
+                                <div class="card-footer">
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </div>
+                                <!-- /.content -->
+                            </form>
+                        </div>
+@endsection

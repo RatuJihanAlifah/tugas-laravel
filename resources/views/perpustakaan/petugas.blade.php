@@ -1,27 +1,70 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Form Petugas</title>
-</head>
-<body>
-    <h2>Form Petugas</h2>
-    <form action="">
-        <label for="id_petugas">ID Petugas:</label><br>
-        <input type="text" id="id_petugas" name="id_petugas"><br><br>
+@extends('layout.master')
+@section('title', 'petugas')
+@section('content')
 
-        <label for="nama_petugas">Nama Petugas:</label><br>
-        <input type="text" id="nama_petugas" name="nama_petugas"><br><br>
+    <div class="content-wrapper">
+      <!-- Content Header (Page header) -->
+        <div class="content-header">
+          <div class="container-fluid">
+            <div class="row mb-2">
+              <div class="col-sm-6">
+                  <h1 class="m-0">Petugas</h1>
+              </div><!-- /.col -->
+              <div class="col-sm-6">
+                  <ol class="breadcrumb float-sm-right">
+                      <li class="breadcrumb-item"><a href="#">Home</a></li>
+                      <li class="breadcrumb-item active">petugas</li>
+                  </ol>
+              </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+      <!-- /.content-header -->
 
-        <label for="jabatan_petugas">Jabatan Petugas:</label><br>
-        <input type="text" id="jabatan_petugas" name="jabatan_petugas"><br><br>
-
-        <label for="no_telpon_petugas">No Telepon Petugas:</label><br>
-        <input type="tel" id="no_telpon_petugas" name="no_telpon_petugas"><br><br>
-
-        <label for="alamat_petugas">Alamat Petugas:</label><br>
-        <textarea name="alamat_petugas" id="alamat_petugas" cols="30" rows="10"></textarea><br><br>
-
-        <input type="submit" value="Submit">
-    </form>
-</body>
-</html>
+      <!-- Main content -->
+        <div class="content">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-lg-12">
+                  <div class="card card-primary">
+                      <div class="card-header">
+                          <h3 class="card-title">Form Petugas</h3>
+                      </div>
+      <!-- /.card-header -->
+      <!-- form start -->
+    <body>
+        <form>
+            <div class="card-body">
+                <div class="form-group">
+                    <label for="id_petugas">ID Petugas</label>
+                    <input class="form-control" type="text" name="id_petugas" id="id_petugas" placeholder="Masukan ID">
+                </div>
+                <div class="form-group">
+                    <label for="nama_petugas">Nama Petugas</label>
+                    <input class="form-control" type="text" name="nama_petugas" id="nama_petugas" placeholder="Masukan nama petugas">
+                </div>
+                <div class="form-group">
+                    <label for="jabatan">Jabatan</label>
+                    <input class="form-control" type="text" name="jabatan" id="jabatan" placeholder="Masukan jabatan">
+                </div>
+                <div class="form-group">
+                    <label>No. Telepon</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                        </div>
+                        <input type="number" class="form-control"
+                            data-inputmask='"mask": "(999) 999-9999"' data-mask placeholder="Masukan angka">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Alamat</label>
+                    <textarea class="form-control" rows="3" placeholder="Masukan alamat"></textarea>
+                </div>
+            </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+        </form>     
+    </body>
+@endsection

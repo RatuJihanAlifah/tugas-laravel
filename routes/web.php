@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AnggotaController;
+use App\Http\Controllers\BukuController;
+use App\Http\Controllers\PetugasController;
 
 /*
 |--------------------------------------------------------------------------
@@ -12,10 +15,13 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-use App\Http\Controllers\PerpustakaanController;
 
-route::get('/perpustakaan/anggota', [PerpustakaanController::class, 'anggota'])->name('get_anggota');
+route::get('/perpustakaan/anggota', [AnggotaController::class, 'anggota'])->name('get_anggota');
 
-route::get('/perpustakaan/buku', [PerpustakaanController::class, 'buku'])->name('get_buku');
+route::get('/perpustakaan/buku', [BukuController::class, 'buku'])->name('get_buku');
 
-route::get('/perpustakaan/petugas', [PerpustakaanController::class, 'petugas'])->name('get_petugas');
+route::get('/perpustakaan/petugas', [PetugasController::class, 'petugas'])->name('get_petugas');
+
+route::get('/', function () {
+    return view('layout.master');
+}); 
