@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class BukuController extends Controller
 {
@@ -11,13 +12,8 @@ class BukuController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    public function buku()
-    {
-        //
-        return view('perpustakaan.buku');
+        $bukus = DB::table('bukus')->get();
+        return view('buku.databuku', compact('bukus'));
     }
 
     /**
@@ -25,7 +21,7 @@ class BukuController extends Controller
      */
     public function create()
     {
-        //
+        return view('buku.buku');
     }
 
     /**
@@ -33,7 +29,27 @@ class BukuController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'id'=> 'required',
+            'kode_buku' => 'required',
+            'judul' => 'required',
+            'penulis' => 'required',
+            'penerbit' => 'required',
+            'tahun_terbit' => 'required',
+            'stok_buku' => 'required',
+        ]);
+
+        $query = DB::table('bukus')->insert([
+            'id'=> $request['id'],
+            'kode_buku'=> $request['kode_buku'],
+            'judul'=> $request['judul'],
+            'penulis'=> $request['penulis'],
+            'penerbit'=> $request['penerbit'],
+            'tahun_terbit'=> $request['tahun_terbit'],
+            'stok_buku'=> $request['stok_buku'],
+        ]);
+        return redirect('/buku');
+
     }
 
     /**
@@ -42,6 +58,8 @@ class BukuController extends Controller
     public function show(string $id)
     {
         //
+        $buku = DB::table('bukus')->where('id', $id)->get();
+        return view('buku.show', compact('buku'));
     }
 
     /**
@@ -50,6 +68,8 @@ class BukuController extends Controller
     public function edit(string $id)
     {
         //
+        $buku = DB::table('bukus')->where('id', $id)->get();
+        return view('buku.edit', compact('buku'));
     }
 
     /**
@@ -58,6 +78,26 @@ class BukuController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $request->validate([
+            'kode_buku' => 'required',
+            'judul' => 'required',
+            'penulis' => 'required',
+            'penerbit' => 'required',
+            'tahun_terbit' => 'required',
+            'stok_buku' => 'required',
+        ]);
+
+
+        $query = DB::table('bukus')->where('id', $id)->update([
+        //'field yang ada di table' => $request['name yang di kirim dari form]
+            'kode_buku'=> $request['kode_buku'],
+            'judul'=> $request['judul'],
+            'penulis'=> $request['penulis'],
+            'penerbit'=> $request['penerbit'],
+            'tahun_terbit'=> $request['tahun_terbit'],
+            'stok_buku'=> $request['stok_buku'],
+        ]);
+        return redirect()->route('buku.index');
     }
 
     /**
@@ -66,5 +106,7 @@ class BukuController extends Controller
     public function destroy(string $id)
     {
         //
+        $query = DB::table('bukus')->where('id', $id)->delete();
+        return redirect()->route('buku.index');
     }
 }

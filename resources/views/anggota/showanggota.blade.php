@@ -27,55 +27,34 @@
                     <div class="col-lg-12">
                         <div class="card card-primary">
                             <div class="card-header">
-                                <h3 class="card-title">Form Anggota</h3>
+                                <h3 class="card-title">Data Anggota</h3>
                             </div>
                             <!-- /.card-header -->
                             <!-- form start -->
-                            <form>
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label for="id">ID Anggota</label>
-                                        <input type="text" class="form-control" id="id" placeholder="Masukkan ID">
+                                        <input type="text" class="form-control" name="id" id="id" placeholder="Masukkan ID" value="{{ $anggota[0]->id }}" disabled>
                                     </div>
                                     <div class="form-group">
                                         <label for="kode_anggota">Kode Anggota</label>
                                         <input type="text" class="form-control" id="kode_anggota"
-                                            placeholder="Masukan kode">
+                                            placeholder="Masukan kode" name="kode_anggota" value="{{ $anggota[0]->kode_anggota }}" disabled>
                                     </div>
                                     <div class="form-group">
                                         <label for="nama">Nama</label>
                                         <input type="text" class="form-control" id="nama"
-                                            placeholder="Masukan nama">
+                                            placeholder="Masukan nama" name="nama" value="{{ $anggota[0]->nama }}" disabled>
                                     </div>
                                     <div class="form-group">
                                         <label for="jk">Jenis Kelamin</label>
-                                        <div class="custom-control custom-radio">
-                                            <input class="custom-control-input" type="radio" id="p"
-                                                name="jk">
-                                            <label for="p" class="custom-control-label">Laki-laki</label>
-                                        </div>
-                                        <div class="custom-control custom-radio">
-                                            <input class="custom-control-input" type="radio" id="l"
-                                                name="jk">
-                                            <label for="l" class="custom-control-label">Perempuan</label>
-                                        </div>
+                                        <input type="text" class="form-control" id="jenis_kelamin"
+                                            placeholder="Masukan nama" name="jenis_kelamin" value="{{ $anggota[0]->jenis_kelamin }}" disabled>
                                     </div>
                                     <div class="form-group">
                                         <label>Jurusan</label>
-                                        <select class="custom-select">
-                                            <option selected disabled>Pilih Jurusan</option>
-                                            <option>TKRO</option>
-                                            <option>TBSM</option>
-                                            <option>TP</option>
-                                            <option>TPGM</option>
-                                            <option>TPL</option>
-                                            <option>TFLM</option>
-                                            <option>TITL</option>
-                                            <option>DPIB</option>
-                                            <option>TKJ</option>
-                                            <option>RPL</option>
-                                            <option>TEI</option>
-                                        </select>
+                                        <input type="text" class="form-control" id="jurusan"
+                                            placeholder="Masukan nama" name="jurusan" value="{{ $anggota[0]->jurusan }}" disabled>
                                     </div>
                                     <div class="form-group">
                                         <label>No. Telepon</label>
@@ -84,18 +63,16 @@
                                                 <span class="input-group-text"><i class="fas fa-phone"></i></span>
                                             </div>
                                             <input type="number" class="form-control"
-                                                data-inputmask='"mask": "(999) 999-9999"' data-mask placeholder="Masukan angka">
+                                                 placeholder="Masukan angka" name="no_telepon" value="{{ $anggota[0]->no_telepon }}" disabled>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                             <label>Alamat</label>
-                                            <textarea class="form-control" rows="3" placeholder="Masukan alamat"></textarea>
+                                            <textarea class="form-control" rows="3" placeholder="Masukan alamat" name="alamat" disabled>{{ $anggota[0]->alamat }}</textarea>
                                         </div>
                                 </div>
                                 <div class="card-footer">
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <input type="button" class="btn btn-danger" value="Kembali" onclick="history.back()">
                                 </div>
-                                <!-- /.content -->
-                            </form>
                         </div>
 @endsection

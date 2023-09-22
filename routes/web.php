@@ -25,3 +25,9 @@ route::get('/perpustakaan/petugas', [PetugasController::class, 'petugas'])->name
 route::get('/', function () {
     return view('layout.master');
 }); 
+
+Route::resource('/anggota', AnggotaController::class);
+
+Route::resource('/buku', BukuController::class);
+
+Route::resource('/petugas', PetugasController::class);

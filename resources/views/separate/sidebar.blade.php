@@ -14,7 +14,10 @@
           <img src="" class="img-circle elevation-2" alt="">
         </div>
         <div class="info">
-          <a href="#" class="d-block"><h3>Perpustakaan</a>
+          <a href="#" class="d-block">
+            <i class="fa-solid fa-book-open-reader" style="color: #511f1f;"></i>
+            <h3>Perpustakaan</h3>
+          </a>
         </div>
       </div>
 
@@ -37,7 +40,7 @@
                with font-awesome or any other icon font library -->
           <li class="nav-item menu-open">
             <a href="#" class="nav-link active">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <i class="nav-icon fas fa-book"></i>
               <p>
                 Perpustakaan
                 <i class="right fas fa-angle-left"></i>
@@ -45,21 +48,43 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ route('get_anggota') }}" class="nav-link">
+                <a href="{{ route('anggota.create') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Anggota</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('get_buku') }}" class="nav-link">
+                <a href="{{ route('buku.create') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Buku</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('get_petugas') }}" class="nav-link">
+                <a href="{{ route('petugas.create') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Petugas</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item menu-open">
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ route('anggota.index') }}" class="nav-link">
+                  <i class="nav-icon fas fa-th"></i>
+                  <p>Data Anggota</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('buku.index') }}" class="nav-link">
+                  <i class="nav-icon fas fa-th"></i>
+                  <p>Data Buku</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('petugas.index') }}" class="nav-link">
+                  <i class="nav-icon fas fa-th"></i>
+                  <p>Data Petugas</p>
                 </a>
               </li>
             </ul>
@@ -72,7 +97,7 @@
                 <span class="right badge badge-danger">New</span>
               </p>
             </a>
-          </li> --}}
+          </li>  --}}
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
