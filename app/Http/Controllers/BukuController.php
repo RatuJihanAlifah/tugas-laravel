@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Buku;
+use App\Models\Rak;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -19,34 +21,43 @@ class BukuController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Rak $rak)
     {
-        return view('buku.buku');
+        $raks = $rak->all();
+        return view('buku.buku', compact('raks'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, Buku $buku)
     {
         $request->validate([
-            'id'=> 'required',
-            'kode_buku' => 'required',
-            'judul' => 'required',
-            'penulis' => 'required',
-            'penerbit' => 'required',
+            'id'           => 'required',
+            'kode_buku'    => 'required',
+            'rak'          => 'required',
+            'judul'        => 'required',
+            'penulis'      => 'required',
+            'penerbit'     => 'required',
+            'cover'        => 'required',
             'tahun_terbit' => 'required',
-            'stok_buku' => 'required',
+            'stok_buku'    => 'required',
         ]);
 
-        $query = DB::table('bukus')->insert([
-            'id'=> $request['id'],
-            'kode_buku'=> $request['kode_buku'],
-            'judul'=> $request['judul'],
-            'penulis'=> $request['penulis'],
-            'penerbit'=> $request['penerbit'],
+        $image = $request->file('poster');
+        $result = CloudinaryStorage::upload($image->getRealPath(),
+        $image->getClientOriginalName());
+
+        $buku::create([
+            'id'          => $request['id'],
+            'kode_buku'   => $request['kode_buku'],
+            'rak_id'      => $request['rak'],
+            'judul'       => $request['judul'],
+            'penulis'     => $request['penulis'],
+            'penerbit'    => $request['penerbit'],
             'tahun_terbit'=> $request['tahun_terbit'],
-            'stok_buku'=> $request['stok_buku'],
+            'stok_buku'   => $request['stok_buku'],
+            'cover'       => $result,
         ]);
         return redirect('/buku');
 
@@ -80,6 +91,7 @@ class BukuController extends Controller
         //
         $request->validate([
             'kode_buku' => 'required',
+            'rak_id' => 'required',
             'judul' => 'required',
             'penulis' => 'required',
             'penerbit' => 'required',
@@ -91,6 +103,7 @@ class BukuController extends Controller
         $query = DB::table('bukus')->where('id', $id)->update([
         //'field yang ada di table' => $request['name yang di kirim dari form]
             'kode_buku'=> $request['kode_buku'],
+            'rak_id'=> $request['rak_id'],
             'judul'=> $request['judul'],
             'penulis'=> $request['penulis'],
             'penerbit'=> $request['penerbit'],

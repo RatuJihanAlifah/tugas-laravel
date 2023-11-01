@@ -33,7 +33,7 @@
       <!-- /.card-header -->
       <!-- form start -->
       <body>
-        <form action="{{ route('buku.store') }}" method="POST">
+        <form action="{{ route('buku.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
           <div class="card-body">
               <div class="form-group">
@@ -43,6 +43,18 @@
               <div class="form-group">
                   <label for="kode_buku">Kode Buku</label>
                   <input class="form-control" type="text" name="kode_buku" id="kode_buku" placeholder="Masukan kode">
+              </div>
+              <div class="form-group">
+                  <label for="rak">Nama Rak</label>
+                  <select name="rak" id="rak" class="form-control">
+                    <option disabled selected>--Pilih Salah Satu--</option>
+                    @forelse ($raks as $key => $value )
+                        <option value="{{ $value->id }}">{{ $value->nama }}</option>
+                    @empty
+                        <option disabled>--Data Masih Kosong--</option>
+                    @endforelse 
+                    {{-- ($casts as $key => $value) --}}
+                </select>
               </div>
               <div class="form-group">
                   <label for="judul">Judul</label>
@@ -56,6 +68,18 @@
                   <label for="penerbit" name="penerbit" id="penerbit">Penerbit</label>
                   <input class="form-control" type="text" name="penerbit" id="penerbit" placeholder="Masukan nama penerbit">
               </div>
+              <div class="form-group">
+                <label for="cover">Cover Buku</label>
+                <div class="input-group">
+                    <div class="custom-file">
+                        <input type="file" name="cover" id="cover" class="form-control" placeholder="Enter cover Film">
+                        <label class="custom-file-label" for="cover">Choose file</label>
+                    </div>
+                    <div class="input-group-append">
+                        <span class="input-group-text">Upload</span>
+                    </div>
+                </div>
+            </div>
               <div class="form-group">
                   <label for="tahun_terbit" name="tahun_terbit" id="tahun_terbit">Tahun Terbit</label>
                   <div class="input-group">

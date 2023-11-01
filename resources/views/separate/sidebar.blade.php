@@ -14,7 +14,7 @@
           <img src="" class="img-circle elevation-2" alt="">
         </div>
         <div class="info">
-          <a href="#" class="d-block">
+          <a href="{{  route('anggota.edit', Auth::user()->id) }}" class="d-block">{{ Auth::user()->name}}<h3></a>
             <i class="fa-solid fa-book-open-reader" style="color: #511f1f;"></i>
             <h3>Perpustakaan</h3>
           </a>
@@ -48,20 +48,20 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ route('anggota.create') }}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                <a href="{{ route('anggota.create') }}" class="nav-link @if (Request::segment(1) == 'anggotas') active @endif">
+                  <i class="nav-icon fas fa-th"></i>
                   <p>Anggota</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('buku.create') }}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                <a href="{{ route('buku.create') }}" class="nav-link @if (Request::segment(1) == 'bukus') active @endif">
+                  <i class="nav-icon fas fa-th"></i>
                   <p>Buku</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('petugas.create') }}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                <a href="{{ route('petugas.create') }}" class="nav-link @if (Request::segment(1) == 'petugass') active @endif">
+                  <i class="nav-icon fas fa-th"></i>
                   <p>Petugas</p>
                 </a>
               </li>
@@ -70,24 +70,32 @@
           <li class="nav-item menu-open">
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ route('anggota.index') }}" class="nav-link">
+                <a href="{{ route('anggota.index') }}" class="nav-link @if (Request::segment(1) == 'anggotas') active @endif">
                   <i class="nav-icon fas fa-th"></i>
                   <p>Data Anggota</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('buku.index') }}" class="nav-link">
+                <a href="{{ route('buku.index') }}" class="nav-link @if (Request::segment(1) == 'bukus') active @endif">
                   <i class="nav-icon fas fa-th"></i>
                   <p>Data Buku</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('petugas.index') }}" class="nav-link">
+                <a href="{{ route('petugas.index') }}" class="nav-link @if (Request::segment(1) == 'prtugas') active @endif">
                   <i class="nav-icon fas fa-th"></i>
                   <p>Data Petugas</p>
                 </a>
               </li>
             </ul>
+          </li>
+          <li class="nav-item">
+            <form action="{{ route('auth.logout') }}" method="POST">
+              @csrf
+              <button type="submit" class="nav-link btn btn-warning">
+                Logout
+              </button>
+            </form>
           </li>
           {{-- <li class="nav-item">
             <a href="#" class="nav-link">
